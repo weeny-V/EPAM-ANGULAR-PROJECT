@@ -1,0 +1,26 @@
+<div class='sort-panel'>
+  <div>
+    <input
+      class='sort-panel__filtering sort-panel__input'
+      placeholder='Board name...'
+      type='text'
+      [formControl]='filterInput'
+      (input)='onFilter()'
+    >
+  </div>
+
+  <select class='sort-panel__filtering' id='sort-panel' [formControl]='sortBy' (change)='onChange()'>
+    <option value='Date' selected='selected'>Date</option>
+    <option value='Name'>Name</option>
+    <option *ngIf='isDashboard' value='Tasks'>Number of tasks/in progress/done</option>
+  </select>
+
+  <button class='sort-panel__btn' type='button' [disabled]='isAsc' (click)='sort()'>
+    ASC
+    <span class="material-symbols-outlined">expand_less</span>
+  </button>
+  <button class='sort-panel__btn' type='button' [disabled]='isDesc' (click)='sort()'>
+    DESC
+    <span class="material-symbols-outlined">expand_more</span>
+  </button>
+</div>

@@ -1,0 +1,123 @@
+.header {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background-color: #1f2937;
+  color: white;
+  padding-right: 80px;
+
+  &__nav {
+    margin: 0 auto;
+  }
+
+  &__auth {
+    position: relative;
+    margin-right: 50px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    position: absolute;
+    left: -55px;
+    top: 32px;
+    min-width: 180px;
+    flex-direction: column;
+    background-color: white;
+    list-style: none;
+    border-radius: 8px;
+    box-shadow: 0 0 50px -12px rgb(0 0 0 / 0.25);
+  }
+
+  &__meni-item {
+    display: flex;
+    width: 100%;
+  }
+
+  &__btn {
+    width: 100%;
+    border: none;
+    height: 35px;
+    font-size: 16px;
+
+    &_login {
+      background-color: #ef4444;
+      color: white;
+
+      &:hover {
+        background-color: #f87171;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:first-child {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+
+.content {
+  padding: 40px 50px;
+}
+
+.nav {
+  &__list {
+    height: 100%;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 12px 0;
+
+    &:after {
+      position: relative;
+      content: '';
+      top: 6px;
+      display: flex;
+      width: 0;
+      height: 1px;
+      background-color: gainsboro;
+      transition: width;
+      transition-duration: .2s;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #c3e1fd;
+
+      &:after {
+        background-color: #c3e1fd;
+        width: 100%;
+      }
+    }
+
+    &_active {
+      color: #09a1ff;
+
+      &:after {
+        width: 100%;
+        background-color: #09a1ff;
+      }
+
+      &:hover {
+        color: #09a1ff;
+
+        &:after {
+          background-color: #09a1ff;
+        }
+      }
+    }
+  }
+}

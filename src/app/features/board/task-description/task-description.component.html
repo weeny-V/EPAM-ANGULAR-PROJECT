@@ -1,0 +1,76 @@
+<div class='card__wrapper'>
+  <div class='card'>
+    <div class='card__name'>
+      <h2 *ngIf='card' class='card__title'>{{card.name}}</h2>
+      <p *ngIf='card'>In column: {{card.status}}</p>
+    </div>
+    <div class='card__buttons'>
+      <button
+        *ngIf='card && card.isArchived'
+        class='card__btn'
+        (click)='updateArchive()'
+        [disabled]='isUpdating'>
+        Delete from Archive
+      </button>
+      <button
+        *ngIf='card && !card.isArchived'
+        class='card__btn card__btn_archive'
+        (click)='updateArchive()'
+        [disabled]='isUpdating'>
+        Archive
+        <span class="material-symbols-outlined">archive</span>
+      </button>
+      <button class='card__btn card__btn_delete' (click)='deleteTask()' [disabled]='isUpdating'>
+        Delete
+        <span class="material-symbols-outlined">delete</span>
+      </button>
+    </div>
+    <div>
+      <p class='card__topic'>Description</p>
+      <textarea class='card__textarea' AutoHeight></textarea>
+    </div>
+    <div>
+      <p class='card__topic'>Comments({{commentList.length}})</p>
+      <div class='card__avatar-wrapper'>
+        <div class='card__comment-wrapper'>
+          <div class='card__avatar'></div>
+          <textarea class='card__comment'
+                    (keydown)='addCommentByKeyBoard($event)'
+                    [formControl]='comment'
+                    AutoHeight>
+          </textarea>
+        </div>
+        <button
+          *ngIf='comment.value! !== ""'
+          class='card__btn'
+          (click)='addComment()'
+          [disabled]='isUpdating'>
+          Send
+        </button>
+      </div>
+    </div>
+    <div class='card__comment-list'>
+      <ul *ngIf='commentList.length !== 0 && !(loading$ | async)' class='card__comments'>
+        <li *ngFor='let cmt of commentList'>
+          <div class='card__comment-wrapper'>
+            <img src='./assets/default-profile.png' class='card__image' alt='avatar'>
+            <div class='card__message-wrapper'>
+              <div class='card__message-top'>
+                <p>{{cmt.from}}</p>
+                <span class="material-symbols-outlined card__dots">more_horiz</span>
+                <button class='card__popup'>
+                  Delete
+                  <span class="material-symbols-outlined" (click)='deleteComment(cmt)'>delete</span>
+                </button>
+              </div>
+              <div class='card__message'>{{ cmt.message }}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf='commentList.length === 0 && !(loading$ | async)'>You don't have any comments yet</div>
+      <app-spinner *ngIf='loading$ | async'></app-spinner>
+    </div>
+    <span class="material-symbols-outlined card__close" (click)='close()'>close</span>
+  </div>
+</div>

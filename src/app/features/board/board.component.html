@@ -1,0 +1,47 @@
+<section class='board'>
+  <div class='board__header'>
+    <h2 class='board__topic'>{{ board && board.name }}</h2>
+    <app-sort-panel
+      [isDashboard]='false'
+      (sortByName)='sortByName($event)'
+      (sortByDate)='sortByDate($event)'
+    ></app-sort-panel>
+  </div>
+  <div class='board__tasks'>
+    <div class='board__item' [ngStyle]="{'background-color': board ? board.todoColor : '#1f2837'}">
+      <app-task-board
+        class='board__child'
+        title='Todo'
+        [column]='todo'
+        [columnColor]='board ? board.todoColor : undefined'
+        [board]='board'
+        (onTaskClick)='openCard($event)'
+        (onChangeColor)='changeColor($event, "todoColor")'>
+      </app-task-board>
+    </div>
+    <div class='board__item' [ngStyle]="{'background-color': board ? board.progressColor : '#1f2837'}">
+      <app-task-board
+        class='board__child'
+        title='In progress'
+        [board]='board'
+        [columnColor]='board ? board.progressColor : undefined'
+        [column]='progress'
+        (onTaskClick)='openCard($event)'
+        (onChangeColor)='changeColor($event, "progressColor")'>
+      </app-task-board>
+    </div>
+    <div class='board__item' [ngStyle]="{'background-color': board ? board.doneColor : '#1f2837'}">
+      <app-task-board
+        class='board__child'
+        title='Done'
+        [board]='board'
+        [columnColor]='board ? board.doneColor : undefined'
+        [column]='done'
+        (onTaskClick)='openCard($event)'
+        (onChangeColor)='changeColor($event, "doneColor")'>
+      </app-task-board>
+    </div>
+  </div>
+</section>
+<div #card></div>
+<app-loader *ngIf='loading$ | async'></app-loader>

@@ -1,0 +1,10 @@
+<div class='prompt__container'>
+  <div class='prompt'>
+    <p class='prompt__text'>Delete board with name: {{name.data}}?</p>
+    <div class='prompt__buttons-container'>
+      <button class='prompt__btn prompt__btn_success' (click)='delete()'>Delete</button>
+      <button class='prompt__btn prompt__btn_reject' (click)='closeMe()'>No</button>
+    </div>
+  </div>
+  <span class="material-symbols-outlined prompt__close" (click)='closeMe()'>close</span>
+</div>

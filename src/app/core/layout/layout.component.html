@@ -1,0 +1,25 @@
+<app-notification></app-notification>
+<header class='header'>
+  <nav class='header__nav'>
+    <ul class='nav__list'>
+      <li
+        routerLink='/dashboard'
+        routerLinkActive='nav__item_active'
+        class='nav__item'>
+        Dashboard
+      </li>
+    </ul>
+  </nav>
+  <div class='header__auth' (click)='isOpen = !isOpen'>
+    {{ user ? user.username : 'username' }}
+    <ul *ngIf='isOpen' class='header__menu'>
+      <li class='header__menu-item'>
+        <button class='header__btn header__btn_login' type='button' (click)='logout()'>Logout</button>
+      </li>
+    </ul>
+  </div>
+</header>
+<div class='content'>
+  <router-outlet></router-outlet>
+</div>
+

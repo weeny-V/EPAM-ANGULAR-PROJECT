@@ -1,0 +1,14 @@
+<app-notification></app-notification>
+<div class='login'>
+  <h1 class='login__title'>EPAM-Angular-Project</h1>
+  <h2 class='login__method'>Log in</h2>
+  <form [formGroup]='loginForm' class='login__form' (ngSubmit)='onSubmit()'>
+    <input class='login__field' type='text' placeholder='Enter username' formControlName='username' required>
+    <input class='login__field' type='password' placeholder='Enter password' formControlName='password' required>
+    <button class='login__btn login__btn_blue' type='submit' [disabled]='!loginForm.valid || (loading$ | async)'>
+      Login
+      <app-spinner *ngIf='loading$ | async' class='spinner'></app-spinner>
+    </button>
+    <button routerLink='/signup' class='login__btn' type='button'>Go to Sign up</button>
+  </form>
+</div>

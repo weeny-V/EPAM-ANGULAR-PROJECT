@@ -1,0 +1,64 @@
+<app-notification></app-notification>
+<div class='signup'>
+  <h1 class='signup__title'>EPAM-Angular-Project</h1>
+  <h2 class='signup__method'>Sign Up</h2>
+  <form [formGroup]='signupForm' class='signup__form' (ngSubmit)='onSubmit()'>
+    <div class='signup__wrapper'>
+      <input
+        class='signup__field'
+        type='text'
+        name='username'
+        placeholder='Enter username'
+        formControlName='username'
+        appValidate>
+      <span class='signup__popup signup__popup_username'>?</span>
+    </div>
+    <div class='signup__wrapper'>
+      <input
+        class='signup__field'
+        type='password'
+        name='password'
+        placeholder='Enter password'
+        formControlName='password'
+        #password
+        appValidate>
+      <span
+        *ngIf='passwordVisibility'
+        class="material-symbols-outlined signup__visibility"
+        (click)='changePasswordVisibility("HIDE")'>
+        visibility
+      </span>
+      <span
+        *ngIf='!passwordVisibility'
+        class="material-symbols-outlined signup__visibility" (click)='changePasswordVisibility("SHOW")'>
+        visibility_off
+      </span>
+      <span class='signup__popup signup__popup_password'>?</span>
+    </div>
+    <div class='signup__wrapper'>
+      <input
+        class='signup__field'
+        type='password'
+        placeholder='Confirm password'
+        formControlName='confirm'
+        #confirm
+      >
+      <span
+        *ngIf='confirmVisibility'
+        class="material-symbols-outlined signup__visibility"
+        (click)='changeConfirmVisibility("HIDE")'>
+        visibility
+      </span>
+      <span
+        *ngIf='!confirmVisibility'
+        class="material-symbols-outlined signup__visibility" (click)='changeConfirmVisibility("SHOW")'>
+        visibility_off
+      </span>
+    </div>
+    <button class='signup__btn signup__btn_blue' type='submit' [disabled]='!signupForm.valid || (loading$ | async)'>
+      Sign Up
+      <app-spinner *ngIf='loading$ | async' class='spinner'></app-spinner>
+    </button>
+    <button routerLink='/login' class='signup__btn' type='button'>Go to Log in</button>
+  </form>
+</div>

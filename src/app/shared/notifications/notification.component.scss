@@ -1,0 +1,44 @@
+.notifications {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  min-width: 400px;
+
+  .notification {
+    position: relative;
+    margin: 5px;
+    border-radius: 8px;
+    color: white;
+    background-color: #1f2937;
+
+    .message {
+      padding: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    &__btn {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border-radius: 50%;
+      border: 1px solid black;
+
+      & span {
+        font-size: 18px;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+    }
+  }
+}

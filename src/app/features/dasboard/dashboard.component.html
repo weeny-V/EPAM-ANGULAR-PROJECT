@@ -1,0 +1,28 @@
+<section class='dashboard'>
+  <div class='dashboard__header'>
+    <h2 class='dashboard__topic'>DashBoard</h2>
+    <app-sort-panel
+      (sortByDate)='sortByDate($event)'
+      (sortByName)='sortByName($event)'
+      (filterByName)='filtering($event)'
+      [isDashboard]='true'
+    ></app-sort-panel>
+  </div>
+  <div class='dashboard__row-container'>
+    <ul class='dashboard__list'>
+      <button class='dashboard__create-btn' (click)='openModal($event)'>
+        Add new
+        <span class="material-symbols-outlined dashboard__icon">add</span>
+      </button>
+      <li routerLink='/board/{{board._id}}/{{board.name.replace(regex, "-")}}' class='dashboard__boards' *ngFor='let board of filteredBoards'>
+        <h3 class='dashboard__title'>{{ board.name }}</h3>
+        <p class='dashboard__date'>{{ board.createdAt | date:'mediumDate' }}</p>
+        <span class="material-symbols-outlined dashboard__edit" (click)='openModal($event, board)'>edit</span>
+        <span class="material-symbols-outlined dashboard__delete" (click)='openPrompt($event, board)'>delete</span>
+      </li>
+    </ul>
+  </div>
+  <div #view></div>
+</section>
+<app-loader *ngIf='loading$ | async'></app-loader>
+

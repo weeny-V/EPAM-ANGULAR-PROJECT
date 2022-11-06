@@ -1,0 +1,138 @@
+@mixin exercise {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  color: black;
+  border-radius: 8px;
+  background-color: white;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}
+
+.board {
+  &__title {
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    list-style: none;
+  }
+
+  &__exercise {
+    @include exercise;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &_centered {
+      @include exercise;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  &__editable {
+    padding: 2px;
+    box-sizing: border-box;
+  }
+
+  &__icon {
+    font-size: 22px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__color-picker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    visibility: hidden;
+    z-index: -10;
+  }
+
+  &__label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    border-radius: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+  }
+
+  &__archive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-left: 10px;
+    color: #fde047;
+  }
+}
+
+.dndList {
+
+  transition: all 300ms ease;
+  padding: 5px;
+  width: 100%;
+
+  &:not(.horizontal).dndDragover {
+
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  &.horizontal {
+    &.dndDragover {
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 12px;
+    }
+  }
+}
+
+.dndDragging {
+  border: 1px solid green;
+}
+
+.dndDraggingSource {
+  display: none;
+}
+
+.dndPlaceholder {
+  min-height: 72px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+}

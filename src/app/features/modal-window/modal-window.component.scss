@@ -1,0 +1,85 @@
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.15);
+  backdrop-filter: blur(12px);
+
+  &__close {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    font-size: 46px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 400px;
+    background-color: white;
+    border-radius: 0.375rem;
+  }
+
+  &__field {
+    min-height: 40px;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    &:hover {
+      cursor: text;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__btn {
+    border-radius: 0.25rem;
+    color: white;
+    background-color: #09a1ff;
+    border: none;
+    height: 40px;
+    font-size: 16px;
+
+    &:disabled {
+      background-color: #d5ebff;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+[contenteditable]:empty::before {
+  content: "Description...";
+  color: gray;
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}

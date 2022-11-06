@@ -1,0 +1,48 @@
+<h3
+  class='board__title'
+  [ngStyle]='color.value === "#ffffff" ? {"color": "black"} : {"color": "white"}'>
+  {{title}}
+</h3>
+<label [for]='title' class='board__label'>Pick color</label>
+<input
+  class='board__color-picker'
+  [id]='title'
+  type='color'
+  [formControl]='color'
+  (change)='onChange()'>
+<div class='board__container'>
+  <div class='board__exercise_centered' (click)='addTask()'>
+    <span class="material-symbols-outlined board__icon">add</span>
+  </div>
+  <ul
+    class='dndList'
+    dndDropzone
+    dndEffectAllowed='move'
+    (dndDrop)='onDrop($event, column!)'
+    [dndHorizontal]='layout.dndHorizontal'
+    [class.horizontal]='layout.dndHorizontal'>
+    <div dndPlaceholderRef class='dndPlaceholder'></div>
+    <li
+      class='board__exercise'
+      *ngFor='let item of column'
+      [dndDraggable]="item"
+      [dndEffectAllowed]="dragEffect"
+      [dndDisableIf]="false"
+      (dndStart)="onDragStart($event, item)"
+      (dndMoved)="onDragged(item, column!)"
+      (dndEnd)="onDragEnd($event)"
+      (click)='onClick(item)'>
+      <div class='board__row'>
+        <p
+          class='board__editable'
+          (keydown.enter)='onEnter($event)'
+          (blur)='onEditFinished($event, item)'>
+          {{item.name}}
+        </p>
+        <span *ngIf='item.isArchived' class="material-symbols-outlined board__archive">archive</span>
+      </div>
+      <span class="material-symbols-outlined board__icon" (click)='onEdit($event)'>edit</span>
+    </li>
+    <div #view></div>
+  </ul>
+</div>
